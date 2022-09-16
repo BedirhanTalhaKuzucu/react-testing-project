@@ -1,16 +1,21 @@
 
 import React, { useState } from "react";
+import MessageList from "./MessageList";
 import NewMessageForm from "./NewMessageForm";
 
 const App = () => {
-  const [heading, setHeading] = useState("CodeSweetly Test");
 
-  const handleClick = () => {
-    setHeading("A CodeSweetly Project");
-  };
+  const [messages, setMessages] = useState([]);
+
+  function handleSend(newMessage) {
+    setMessages([newMessage, ...messages])
+  }
 
   return (
-      <NewMessageForm />
+    <>
+      <NewMessageForm onSend={handleSend} />
+      <MessageList data = {messages} />
+    </>
   );
 };
 
